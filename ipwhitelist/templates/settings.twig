@@ -24,10 +24,10 @@
 			<td>
 				{{ forms.text({
 					name: 'code',
-					value: settings.override
+					value: settings.code
 				}) }}
 				<br /><br />
-				Append <code>?ipwhitelist={{ settings.override }}</code> to any URL to automatically add the current IP to the whitelist.
+				Append <code>?ipwhitelist={{ craft.ipwhitelist.code }}</code> to any URL to automatically add the current IP to the whitelist.
 			</td>
 		</tr>
 	</table>

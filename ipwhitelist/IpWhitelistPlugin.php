@@ -8,8 +8,7 @@ class IpWhitelistPlugin extends BasePlugin
         return array(
             'activated' => array(AttributeType::Bool, 'default' => false),
             'whitelist' => array(AttributeType::String, 'default' => '127.0.0.1'),
-            'code' => array(AttributeType::String, 'default' => sha1(md5(rand()))),
-            'override' => array(AttributeType::String, 'default' => '')
+            'code' => array(AttributeType::String, 'default' => sha1(md5(rand())))
         );
     }
     
