@@ -40,6 +40,7 @@ class IpWhitelistPlugin extends BasePlugin
 		    
 		    if(!craft()->userSession->isAdmin() && !craft()->ipWhitelist->_checkIP(craft()->request->getIpAddress())) {
 			    craft()->request->close('IP not whitelisted');
+			    exit(0);
 		    }
 	    }
     }
