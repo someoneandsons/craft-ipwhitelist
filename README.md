@@ -1,4 +1,3 @@
-Craft CMS: IP Whitelist
-=================
+##Craft — IP Whitelist
 
-Whitelist requests to your Craft website from only certain IP addresses
+Limit requests to your Craft website to those from an IP addresses whitelist.
