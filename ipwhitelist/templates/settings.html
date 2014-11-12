@@ -1,0 +1,55 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.checkboxField({
+	first: true,
+	label: "Activated?"|t,
+	name: 'activated',
+	toggle: 'defaults',
+	checked: (settings.activated is defined and settings.activated is not empty ? true : false),
+}) }}
+
+<div id="defaults"{% if settings.activated is not defined or not settings.activated %} class="hidden"{% endif %}>
+	<div class="field first" id="whitelist-field">
+		<div class="heading">
+			<label for="whitelist">Whitelisted IP addresses</label>
+			<div class="instructions">
+				<p>Add one IP address per line to whitelist their access. Your current IP address is <code>{{ craft.ipwhitelist.ip }}</code>.</p>
+			</div>
+		</div>
+		<div class="input">
+			{{ forms.textarea({
+				name: 'whitelist',
+				value: settings.whitelist
+			}) }}
+		</div>
+	</div>
+	<div class="field" id="code-field">
+		<div class="heading">
+			<label for="code">Override code</label>
+			<div class="instructions">
+				<p>The override code can be used to automatically add the current IP address to the whitelist.<br />
+				Make a note of this URL, as it can be used if your IP address changes and it's not on the list: <a href="{{ url(siteUrl~'?ipwhitelist='~craft.ipwhitelist.code) }}">{{ url(siteUrl~'?ipwhitelist='~craft.ipwhitelist.code) }}</a>.</p>
+			</div>
+		</div>
+		<div class="input">
+			{{ forms.text({
+				name: 'code',
+				value: settings.code
+			}) }}
+		</div>
+	</div>
+	<div class="field" id="template-field">
+		<div class="heading">
+			<label for="template">Template</label>
+			<div class="instructions">
+				<p>The name of the template that should be loaded if a visitor is prevented from accessing the site. If left blank, a generic message will be displayed.</p>
+			</div>
+		</div>
+		<div class="input">
+			{{ forms.text({
+				name: 'template',
+				value: settings.template
+			}) }}
+		</div>
+	</div>
+</div>
