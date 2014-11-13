@@ -39,7 +39,7 @@ class IpWhitelistPlugin extends BasePlugin
 		    
 		    craft()->ipWhitelist->_checkCode(craft()->request->getQuery('ipwhitelist'));
 		    
-		    if(!craft()->userSession->isAdmin() && !craft()->ipWhitelist->_checkIP(craft()->request->getIpAddress())) {
+		    if(!craft()->userSession->isAdmin() && !craft()->request->isCpRequest() && !craft()->ipWhitelist->_checkIP(craft()->request->getIpAddress())) {
 			    if(!empty($this->getSettings()->template)) {
 					echo craft()->templates->render($this->getSettings()->template);
 			    } else {
