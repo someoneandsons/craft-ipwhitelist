@@ -38,6 +38,20 @@
 			}) }}
 		</div>
 	</div>
+	<div class="field" id="exclude-field">
+		<div class="heading">
+			<label for="template">Exclude</label>
+			<div class="instructions">
+				<p>Paths to exclude from the IP restrictions, add one path per line.</p>
+			</div>
+		</div>
+		<div class="input">
+			{{ forms.textarea({
+				name: 'exclude',
+				value: settings.exclude
+			}) }}
+		</div>
+	</div>
 	<div class="field" id="template-field">
 		<div class="heading">
 			<label for="template">Template</label>
