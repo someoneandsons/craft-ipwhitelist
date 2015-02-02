@@ -9,6 +9,7 @@ class IpWhitelistPlugin extends BasePlugin
             'activated' => array(AttributeType::Bool, 'default' => false),
             'whitelist' => array(AttributeType::String, 'default' => '127.0.0.1'),
             'code' => array(AttributeType::String, 'default' => sha1(md5(rand()))),
+            'exclude' => array(AttributeType::String, 'default' => ''),
             'template' => array(AttributeType::String, 'default' => '')
         );
     }
@@ -20,7 +21,7 @@ class IpWhitelistPlugin extends BasePlugin
 
     public function getVersion()
     {
-        return '1.0';
+        return '1.1';
     }
 
     public function getDeveloper()
@@ -38,8 +39,8 @@ class IpWhitelistPlugin extends BasePlugin
 	    if($this->getSettings()->activated) {
 		    
 		    craft()->ipWhitelist->_checkCode(craft()->request->getQuery('ipwhitelist'));
-		    
-		    if(!craft()->userSession->isAdmin() && !craft()->request->isCpRequest() && !craft()->ipWhitelist->_checkIP(craft()->request->getIpAddress())) {
+
+		    if(!craft()->userSession->isAdmin() && !craft()->request->isCpRequest() && !craft()->ipWhitelist->_isExcluded() && !craft()->ipWhitelist->_checkIP(craft()->request->getIpAddress())) {
 			    if(!empty($this->getSettings()->template)) {
 					echo craft()->templates->render($this->getSettings()->template);
 			    } else {
